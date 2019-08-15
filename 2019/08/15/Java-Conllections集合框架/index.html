@@ -79,20 +79,20 @@
 
 
 
-<meta name="description" content="Collections 集合，就是可以容纳其他Java对象的对象。Java Collections Framework（JCF）为Java开发者提&amp;gt;  供了通用的容器，Java容器里只能放对象，对于基本类型（int, long, float, double等），需要将其包装成对象类型后（Integer, Long, Float, Double等）才能放到容器里。很多时候拆包装和解包装能够自动">
+<meta name="description" content="Collections介绍容器，就是可以容纳其他Java对象的对象。Java Collections Framework（JCF）为Java开发者提供了通用的容器，Java容器里只能放对象，对于基本类型（int, long, float, double等），需要将其包装成对象类型后（Integer, Long, Float, Double等）才能放到容器里。很多时候拆包装和解包装能够自动完成。这虽">
 <meta name="keywords" content="Java集合框架,Conllections">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java Conllections集合框架">
 <meta property="og:url" content="http://yoursite.com/2019/08/15/Java-Conllections集合框架/index.html">
 <meta property="og:site_name" content="HongYu&#39;s Blog">
-<meta property="og:description" content="Collections 集合，就是可以容纳其他Java对象的对象。Java Collections Framework（JCF）为Java开发者提&amp;gt;  供了通用的容器，Java容器里只能放对象，对于基本类型（int, long, float, double等），需要将其包装成对象类型后（Integer, Long, Float, Double等）才能放到容器里。很多时候拆包装和解包装能够自动">
+<meta property="og:description" content="Collections介绍容器，就是可以容纳其他Java对象的对象。Java Collections Framework（JCF）为Java开发者提供了通用的容器，Java容器里只能放对象，对于基本类型（int, long, float, double等），需要将其包装成对象类型后（Integer, Long, Float, Double等）才能放到容器里。很多时候拆包装和解包装能够自动完成。这虽">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://github.com/CarpenterLee/JCFInternals/blob/master/PNGFigures/JCF_Collection_Interfaces.png">
-<meta property="og:updated_time" content="2019-08-15T07:51:16.588Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/CarpenterLee/JCFInternals/master/PNGFigures/JCF_Collection_Interfaces.png">
+<meta property="og:updated_time" content="2019-08-15T08:02:01.916Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java Conllections集合框架">
-<meta name="twitter:description" content="Collections 集合，就是可以容纳其他Java对象的对象。Java Collections Framework（JCF）为Java开发者提&amp;gt;  供了通用的容器，Java容器里只能放对象，对于基本类型（int, long, float, double等），需要将其包装成对象类型后（Integer, Long, Float, Double等）才能放到容器里。很多时候拆包装和解包装能够自动">
-<meta name="twitter:image" content="https://github.com/CarpenterLee/JCFInternals/blob/master/PNGFigures/JCF_Collection_Interfaces.png">
+<meta name="twitter:description" content="Collections介绍容器，就是可以容纳其他Java对象的对象。Java Collections Framework（JCF）为Java开发者提供了通用的容器，Java容器里只能放对象，对于基本类型（int, long, float, double等），需要将其包装成对象类型后（Integer, Long, Float, Double等）才能放到容器里。很多时候拆包装和解包装能够自动完成。这虽">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/CarpenterLee/JCFInternals/master/PNGFigures/JCF_Collection_Interfaces.png">
 
 
 
@@ -354,19 +354,12 @@
       
 
       
-        <h2 id="Collections"><a href="#Collections" class="headerlink" title="Collections"></a>Collections</h2><blockquote>
-<p>集合，就是可以容纳其他Java对象的对象。<em>Java Collections Framework（JCF）</em>为Java开发者提&gt;  供了通用的容器，Java容器里只能放对象，对于基本类型（int, long, float, double等），需要将其包装成对象类型后（Integer, Long, Float, Double等）才能放到容器里。很多时候拆包装和解包装能够自动完成。这虽然会导致额外的性能和空间开销，但简化了设计和编程。</p>
-<p>Java标准库自带的<code>java.util</code>包提供了集合类：<code>Collection</code>，它是所有其他集合类的根&gt; &gt;  接口。在<code>Collection</code>的基础上，Java的<code>java.util</code>包主要提供了以下三种类型的集合：</p>
+        <h2 id="Collections介绍"><a href="#Collections介绍" class="headerlink" title="Collections介绍"></a>Collections介绍</h2><p>容器，就是可以容纳其他Java对象的对象。<em>Java Collections Framework（JCF）</em>为Java开发者提供了通用的容器，Java容器里只能放对象，对于基本类型（int, long, float, double等），需要将其包装成对象类型后（Integer, Long, Float, Double等）才能放到容器里。很多时候拆包装和解包装能够自动完成。这虽然会导致额外的性能和空间开销，但简化了设计和编程。<br>为了规范容器的行为，统一设计，JCF定义了14种容器接口（collection interfaces），它们的关系如下图所示：<br><img src="https://raw.githubusercontent.com/CarpenterLee/JCFInternals/master/PNGFigures/JCF_Collection_Interfaces.png" alt="collection interfaces"><br>Java标准库自带的<code>java.util</code>包提供了集合类：<code>Collection</code>，它是所有其他集合类的根接口。在<code>Collection</code>的基础上，Java的<code>java.util</code>包主要提供了以下三种类型的集合：</p>
 <ul>
-<li><p><code>List</code>：一种有序列表的集合</p>
-</li>
-<li><p><code>Set</code>：一种保证没有重复元素的集合</p>
-</li>
-<li><p><code>Map</code>：一种通过键值（key-value）查找的映射表集合</p>
-</li>
+<li><code>List</code>：一种有序列表的集合</li>
+<li><code>Set</code>：一种保证没有重复元素的集合</li>
+<li><code>Map</code>：一种通过键值（key-value）查找的映射表集合</li>
 </ul>
-<p>为了规范容器的行为，统一设计，JCF定义了14种容器接口（collection interfaces），它们的关系如下图所示：<br><img src="https://github.com/CarpenterLee/JCFInternals/blob/master/PNGFigures/JCF_Collection_Interfaces.png" alt="collection interfaces"></p>
-</blockquote>
 
       
     </div>
@@ -541,7 +534,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Collections"><span class="nav-number">1.</span> <span class="nav-text">Collections</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Collections介绍"><span class="nav-number">1.</span> <span class="nav-text">Collections介绍</span></a></li></ol></div>
             
 
           </div>
