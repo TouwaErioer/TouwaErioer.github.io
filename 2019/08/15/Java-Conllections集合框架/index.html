@@ -89,7 +89,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://raw.githubusercontent.com/CarpenterLee/JCFInternals/master/PNGFigures/JCF_Collection_Interfaces.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/CarpenterLee/JCFInternals/master/PNGFigures/ArrayList_base.png">
-<meta property="og:updated_time" content="2019-08-16T09:00:33.449Z">
+<meta property="og:updated_time" content="2019-08-16T09:02:11.715Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java Conllections集合框架">
 <meta name="twitter:description" content="Collections介绍简介容器，就是可以容纳其他Java对象的对象。* Java Collections Framework（JCF）*为Java开发者提供了通用的容器。 Java容器里只能放对象，对于基本类型（int, long, float, double等），需要将其包装成对象类型后（Integer, Long, Float, Double等）才能放到容器里。很多时候拆包装和解包装能够自">
@@ -420,32 +420,27 @@
 <p>实现<code>List</code>接口并非只能通过数组：ArrayList通过数组实现，LinkedList通过链表实现</p>
 </li>
 <li><p>几个主要的接口方法：</p>
-<ol>
-<li>在末尾添加一个元素：<code>void add(E e)</code></li>
-<li>在指定索引添加一个元素：<code>void add(int index, E e)</code></li>
-<li>删除指定索引的元素：<code>int remove(int index)</code></li>
-<li>删除某个元素：<code>int remove(Object e)</code></li>
-<li>获取指定索引的元素：<code>E get(int index)</code></li>
-<li>获取链表大小（包含元素的个数）：<code>int size()</code></li>
-</ol>
+<p> 在末尾添加一个元素：<code>void add(E e)</code></p>
+<p> 在指定索引添加一个元素：<code>void add(int index, E e)</code></p>
+<p> 删除指定索引的元素：<code>int remove(int index)</code></p>
+<p> 删除某个元素：<code>int remove(Object e)</code></p>
+<p> 获取指定索引的元素：<code>E get(int index)</code></p>
+<p> 获取链表大小（包含元素的个数）：<code>int size()</code></p>
 </li>
 <li><p>特点</p>
-<ol>
-<li>允许重复</li>
-<li>允许添加null</li>
-<li>是一种有序链表</li>
-</ol>
+<p>允许重复</p>
 </li>
+</ul>
+<p>允许添加null</p>
+<p>  是一种有序链表</p>
+<ul>
 <li><p>遍历List</p>
-<ol>
-<li><p>通过Iterator</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (Iterator&lt;String&gt; it = list.iterator(); it.hasNext(); ) &#123;</span><br><span class="line">     	//TODO</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>通过for…each…</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (String s : list) &#123;</span><br><span class="line">      //TODO</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<p>  通过Iterator</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (Iterator&lt;String&gt; it = list.iterator(); it.hasNext(); ) &#123;</span><br><span class="line">     	//TODO</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
 
-</li>
-</ol>
+<p>  通过for…each…</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (String s : list) &#123;</span><br><span class="line">      //TODO</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
 </li>
 </ul>
 <h3 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h3><ul>
