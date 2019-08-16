@@ -89,7 +89,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://raw.githubusercontent.com/CarpenterLee/JCFInternals/master/PNGFigures/JCF_Collection_Interfaces.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/CarpenterLee/JCFInternals/master/PNGFigures/ArrayList_base.png">
-<meta property="og:updated_time" content="2019-08-16T09:18:41.051Z">
+<meta property="og:updated_time" content="2019-08-16T09:21:58.955Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java Conllections集合框架">
 <meta name="twitter:description" content="Collections介绍简介容器，就是可以容纳其他Java对象的对象。* Java Collections Framework（JCF）*为Java开发者提供了通用的容器。 Java容器里只能放对象，对于基本类型（int, long, float, double等），需要将其包装成对象类型后（Integer, Long, Float, Double等）才能放到容器里。很多时候拆包装和解包装能够自">
@@ -367,6 +367,8 @@
 <li><p><code>Map</code>：一种通过键值（key-value）查找的映射表集合</p>
 </li>
 </ul>
+<a id="more"></a>
+
 <h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><table>
 <thead>
 <tr>
@@ -411,9 +413,7 @@
 <td align="center">LinkedHashMap</td>
 </tr>
 </tbody></table>
-<a id="more"></a>
-
-<h1 id="List"><a href="#List" class="headerlink" title="List"></a>List</h1><p>在集合类中，<code>List</code>是最基础的一种集合：它是一种有序链表。</p>
+<h1 id="List接口"><a href="#List接口" class="headerlink" title="List接口"></a>List接口</h1><p>在集合类中，<code>List</code>是最基础的一种集合：它是一种有序链表。</p>
 <p><code>List</code>的行为和数组几乎完全相同：<code>List</code>内部按照放入元素的先后顺序存放，每个元素都可以通过索引确定自己的位置，<code>List</code>的索引和数组一样，从<code>0</code>开始。</p>
 <p>实现<code>List</code>接口并非只能通过数组：ArrayList通过数组实现，LinkedList通过链表实现</p>
 <p><strong>几个主要的接口方法</strong>：</p>
@@ -423,10 +423,7 @@
 <p>删除某个元素：<code>int remove(Object e)</code></p>
 <p>获取指定索引的元素：<code>E get(int index)</code></p>
 <p>获取链表大小（包含元素的个数）：<code>int size()</code></p>
-<p><strong>特点</strong></p>
-<p>允许重复</p>
-<p>允许添加null</p>
-<p>是一种有序链表</p>
+<p><strong>特点</strong>：允许重复，允许添加null，是一种有序链表</p>
 <p><strong>遍历List</strong></p>
 <p>通过Iterator</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (Iterator&lt;String&gt; it = list.iterator(); it.hasNext(); ) &#123;</span><br><span class="line">     	//TODO</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
@@ -434,7 +431,7 @@
 <p>通过for…each…</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (String s : list) &#123;</span><br><span class="line">      //TODO</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h3><p><strong>ArrayList</strong>实现了<strong>List</strong>接口，是顺序容器，即元素存放的数据与放进去的顺序相同，允许放入<code>null</code>元素，底层通过<strong>数组实现</strong>。除该类未实现同步外，其余跟<em>Vector</em>大致相同。每个<em>ArrayList</em>都有一个容量（capacity），表示底层数组的实际大小，容器内存储元素的个数不能多于当前容量。当向容器中添加元素时，如果容量不足，容器会自动增大底层数组的大小。</p>
+<h3 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h3><p><strong>ArrayList</strong>实现了<strong>List</strong>接口，是顺序容器，即元素存放的数据与放进去的顺序相同，允许放入<code>null</code>元素，底层通过<strong>数组实现</strong>。除该类未实现同步外，其余跟<strong>Vector</strong>大致相同。每个<strong>ArrayList</strong>都有一个容量（capacity），表示底层数组的实际大小，容器内存储元素的个数不能多于当前容量。当向容器中添加元素时，如果容量不足，容器会自动增大底层数组的大小。</p>
 <p>size(), isEmpty(), get(), set()方法均能在常数时间内完成，add()方法的时间开销跟插入位置有关，addAll()方法的时间开销跟添加元素的个数成正比。其余方法大都是线性时间。</p>
 <p><img src="https://raw.githubusercontent.com/CarpenterLee/JCFInternals/master/PNGFigures/ArrayList_base.png" alt></p>
 <h3 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h3>
@@ -611,7 +608,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Collections介绍"><span class="nav-number">1.</span> <span class="nav-text">Collections介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.0.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现"><span class="nav-number">1.0.2.</span> <span class="nav-text">实现</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#List"><span class="nav-number">2.</span> <span class="nav-text">List</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ArrayList"><span class="nav-number">2.0.1.</span> <span class="nav-text">ArrayList</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LinkedList"><span class="nav-number">2.0.2.</span> <span class="nav-text">LinkedList</span></a></li></ol></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Collections介绍"><span class="nav-number">1.</span> <span class="nav-text">Collections介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.0.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现"><span class="nav-number">1.0.2.</span> <span class="nav-text">实现</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#List接口"><span class="nav-number">2.</span> <span class="nav-text">List接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ArrayList"><span class="nav-number">2.0.1.</span> <span class="nav-text">ArrayList</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LinkedList"><span class="nav-number">2.0.2.</span> <span class="nav-text">LinkedList</span></a></li></ol></li></div>
             
 
           </div>
