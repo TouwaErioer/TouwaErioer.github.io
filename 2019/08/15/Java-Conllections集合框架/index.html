@@ -88,7 +88,8 @@
 <meta property="og:description" content="Collections介绍简介容器，就是可以容纳其他Java对象的对象。* Java Collections Framework（JCF）*为Java开发者提供了通用的容器。 Java容器里只能放对象，对于基本类型（int, long, float, double等），需要将其包装成对象类型后（Integer, Long, Float, Double等）才能放到容器里。很多时候拆包装和解包装能够自">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://raw.githubusercontent.com/CarpenterLee/JCFInternals/master/PNGFigures/JCF_Collection_Interfaces.png">
-<meta property="og:updated_time" content="2019-08-16T08:55:30.745Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/CarpenterLee/JCFInternals/master/PNGFigures/ArrayList_base.png">
+<meta property="og:updated_time" content="2019-08-16T09:00:33.449Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java Conllections集合框架">
 <meta name="twitter:description" content="Collections介绍简介容器，就是可以容纳其他Java对象的对象。* Java Collections Framework（JCF）*为Java开发者提供了通用的容器。 Java容器里只能放对象，对于基本类型（int, long, float, double等），需要将其包装成对象类型后（Integer, Long, Float, Double等）才能放到容器里。很多时候拆包装和解包装能够自">
@@ -412,10 +413,12 @@
 <td align="center">LinkedHashMap</td>
 </tr>
 </tbody></table>
-<h1 id="List"><a href="#List" class="headerlink" title="List"></a>List</h1><p>  在集合类中，<code>List</code>是最基础的一种集合：它是一种有序链表。</p>
-<p>  <code>List</code>的行为和数组几乎完全相同：<code>List</code>内部按照放入元素的先后顺序存放，每个元素都可以通过索引确定自己的位置，<code>List</code>的索引和数组一样，从<code>0</code>开始。</p>
-<p>  实现<code>List</code>接口并非只能通过数组：ArrayList通过数组实现，LinkedList通过链表实现</p>
-<ul>
+<h1 id="List"><a href="#List" class="headerlink" title="List"></a>List</h1><ul>
+<li><p>简介</p>
+<p>在集合类中，<code>List</code>是最基础的一种集合：它是一种有序链表。</p>
+<p><code>List</code>的行为和数组几乎完全相同：<code>List</code>内部按照放入元素的先后顺序存放，每个元素都可以通过索引确定自己的位置，<code>List</code>的索引和数组一样，从<code>0</code>开始。</p>
+<p>实现<code>List</code>接口并非只能通过数组：ArrayList通过数组实现，LinkedList通过链表实现</p>
+</li>
 <li><p>几个主要的接口方法：</p>
 <ol>
 <li>在末尾添加一个元素：<code>void add(E e)</code></li>
@@ -445,7 +448,14 @@
 </ol>
 </li>
 </ul>
-<h3 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h3><h3 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h3>
+<h3 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h3><ul>
+<li><p>介绍</p>
+<p><em>ArrayList</em>实现了<em>List</em>接口，是顺序容器，即元素存放的数据与放进去的顺序相同，允许放入<code>null</code>元素，底层通过<strong>数组实现</strong>。除该类未实现同步外，其余跟<em>Vector</em>大致相同。每个<em>ArrayList</em>都有一个容量（capacity），表示底层数组的实际大小，容器内存储元素的个数不能多于当前容量。当向容器中添加元素时，如果容量不足，容器会自动增大底层数组的大小。</p>
+<p>size(), isEmpty(), get(), set()方法均能在常数时间内完成，add()方法的时间开销跟插入位置有关，addAll()方法的时间开销跟添加元素的个数成正比。其余方法大都是线性时间。</p>
+<p><img src="https://raw.githubusercontent.com/CarpenterLee/JCFInternals/master/PNGFigures/ArrayList_base.png" alt></p>
+</li>
+</ul>
+<h3 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h3>
       
     </div>
     
