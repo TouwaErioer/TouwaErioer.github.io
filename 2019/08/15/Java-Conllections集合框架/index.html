@@ -79,20 +79,20 @@
 
 
 
-<meta name="description" content="Collections介绍简介容器，就是可以容纳其他Java对象的对象。* Java Collections Framework（JCF）*为Java开发者提供了通用的容器。 Java容器里只能放对象，对于基本类型（int, long, float, double等），需要将其包装成对象类型后（Integer, Long, Float, Double等）才能放到容器里。很多时候拆包装和解包装能够自">
+<meta name="description" content="Collections介绍简介容器，就是可以容纳其他Java对象的对象。Java Collections Framework（JCF）为Java开发者提供了通用的容器。 Java容器里只能放对象，对于基本类型（int, long, float, double等），需要将其包装成对象类型后（Integer, Long, Float, Double等）才能放到容器里。很多时候拆包装和解包装能够自动完成">
 <meta name="keywords" content="Java集合框架,Conllections">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java Conllections集合框架">
 <meta property="og:url" content="http://yoursite.com/2019/08/15/Java-Conllections集合框架/index.html">
 <meta property="og:site_name" content="HongYu&#39;s Blog">
-<meta property="og:description" content="Collections介绍简介容器，就是可以容纳其他Java对象的对象。* Java Collections Framework（JCF）*为Java开发者提供了通用的容器。 Java容器里只能放对象，对于基本类型（int, long, float, double等），需要将其包装成对象类型后（Integer, Long, Float, Double等）才能放到容器里。很多时候拆包装和解包装能够自">
+<meta property="og:description" content="Collections介绍简介容器，就是可以容纳其他Java对象的对象。Java Collections Framework（JCF）为Java开发者提供了通用的容器。 Java容器里只能放对象，对于基本类型（int, long, float, double等），需要将其包装成对象类型后（Integer, Long, Float, Double等）才能放到容器里。很多时候拆包装和解包装能够自动完成">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://raw.githubusercontent.com/CarpenterLee/JCFInternals/master/PNGFigures/JCF_Collection_Interfaces.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/CarpenterLee/JCFInternals/master/PNGFigures/ArrayList_base.png">
-<meta property="og:updated_time" content="2019-08-17T06:50:53.730Z">
+<meta property="og:updated_time" content="2019-08-17T07:27:19.313Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java Conllections集合框架">
-<meta name="twitter:description" content="Collections介绍简介容器，就是可以容纳其他Java对象的对象。* Java Collections Framework（JCF）*为Java开发者提供了通用的容器。 Java容器里只能放对象，对于基本类型（int, long, float, double等），需要将其包装成对象类型后（Integer, Long, Float, Double等）才能放到容器里。很多时候拆包装和解包装能够自">
+<meta name="twitter:description" content="Collections介绍简介容器，就是可以容纳其他Java对象的对象。Java Collections Framework（JCF）为Java开发者提供了通用的容器。 Java容器里只能放对象，对于基本类型（int, long, float, double等），需要将其包装成对象类型后（Integer, Long, Float, Double等）才能放到容器里。很多时候拆包装和解包装能够自动完成">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/CarpenterLee/JCFInternals/master/PNGFigures/JCF_Collection_Interfaces.png">
 
 
@@ -355,9 +355,10 @@
       
 
       
-        <h2 id="Collections介绍"><a href="#Collections介绍" class="headerlink" title="Collections介绍"></a>Collections介绍</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>容器，就是可以容纳其他Java对象的对象。<strong>* Java Collections Framework（JCF）*</strong>为Java开发者提供了通用的容器。</p>
+        <h2 id="Collections介绍"><a href="#Collections介绍" class="headerlink" title="Collections介绍"></a>Collections介绍</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>容器，就是可以容纳其他Java对象的对象。<strong>Java Collections Framework（JCF）</strong>为Java开发者提供了通用的容器。</p>
 <p>Java容器里只能放对象，对于基本类型（int, long, float, double等），需要将其包装成对象类型后（Integer, Long, Float, Double等）才能放到容器里。很多时候拆包装和解包装能够自动完成。这虽然会导致额外的性能和空间开销，但简化了设计和编程。</p>
 <p>为了规范容器的行为，统一设计，JCF定义了14种容器接口（collection interfaces），它们的关系如下图所示：<br><img src="https://raw.githubusercontent.com/CarpenterLee/JCFInternals/master/PNGFigures/JCF_Collection_Interfaces.png" alt="collection interfaces"></p>
+<a id="more"></a>
 <p>Java标准库自带的<code>java.util</code>包提供了集合类：<code>Collection</code>，它是所有其他集合类的根接口。在<code>Collection</code>的基础上，Java的<code>java.util</code>包主要提供了以下三种类型的集合：</p>
 <ul>
 <li><p><code>List</code>：一种有序列表的集合</p>
@@ -367,9 +368,7 @@
 <li><p><code>Map</code>：一种通过键值（key-value）查找的映射表集合</p>
 </li>
 </ul>
-<a id="more"></a>
-
-<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><table>
+<h3 id="实现类"><a href="#实现类" class="headerlink" title="实现类"></a>实现类</h3><table>
 <thead>
 <tr>
 <th align="center"></th>
@@ -431,7 +430,20 @@
 
 <h3 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h3><p><strong>ArrayList</strong>实现了<strong>List</strong>接口，是顺序容器，即元素存放的数据与放进去的顺序相同，允许放入<code>null</code>元素，底层通过<strong>数组实现</strong>。除该类未实现同步外，其余跟<strong>Vector</strong>大致相同。每个<strong>ArrayList</strong>都有一个容量（capacity），表示底层数组的实际大小，容器内存储元素的个数不能多于当前容量。当向容器中添加元素时，如果容量不足，容器会自动增大底层数组的大小。</p>
 <p>size(), isEmpty(), get(), set()方法均能在常数时间内完成，add()方法的时间开销跟插入位置有关，addAll()方法的时间开销跟添加元素的个数成正比。其余方法大都是线性时间。</p>
+<p>为追求效率，ArrayList没有实现同步（synchronized），如果需要多个线程并发访问，用户可以手动同步，也可使用Vector替代。</p>
 <p><img src="https://raw.githubusercontent.com/CarpenterLee/JCFInternals/master/PNGFigures/ArrayList_base.png" alt></p>
+<h4 id="底层实现"><a href="#底层实现" class="headerlink" title="底层实现"></a>底层实现</h4><ul>
+<li><p>*<em>set() *</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public E set(int index, E element) &#123;</span><br><span class="line">    rangeCheck(index);//下标越界检查</span><br><span class="line">    E oldValue = elementData(index);</span><br><span class="line">    elementData[index] = element;//赋值到指定位置，复制的仅仅是引用</span><br><span class="line">    return oldValue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>*<em>get() *</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public E get(int index) &#123;</span><br><span class="line">    rangeCheck(index);</span><br><span class="line">    return (E) elementData[index];//注意类型转换</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>*<em>add() *</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">public boolean add(E e) &#123;</span><br><span class="line">    ensureCapacityInternal(size + 1);  // Increments modCount!!</span><br><span class="line">    elementData[size++] = e;</span><br><span class="line">    return true;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">private void ensureCapacityInternal(int minCapacity) &#123;</span><br><span class="line">	// 判断是否是第一次添加元素，若是第一次就设定长度为10</span><br><span class="line">    if (elementData == EMPTY_ELEMENTDATA) &#123;</span><br><span class="line">        minCapacity = Math.max(DEFAULT_CAPACITY, minCapacity);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ensureExplicitCapacity(minCapacity);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">private void ensureExplicitCapacity(int minCapacity) &#123;</span><br><span class="line">    modCount++;</span><br><span class="line"></span><br><span class="line">    // 判断是否要扩容</span><br><span class="line">    if (minCapacity - elementData.length &gt; 0)</span><br><span class="line">        grow(minCapacity);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">private void grow(int minCapacity) &#123;</span><br><span class="line">    int oldCapacity = elementData.length;</span><br><span class="line">    int newCapacity = oldCapacity + (oldCapacity &gt;&gt; 1);//原来的1.5倍</span><br><span class="line">    if (newCapacity - minCapacity &lt; 0)</span><br><span class="line">        newCapacity = minCapacity;</span><br><span class="line">    if (newCapacity - MAX_ARRAY_SIZE &gt; 0)</span><br><span class="line">        newCapacity = hugeCapacity(minCapacity);</span><br><span class="line">    elementData = Arrays.copyOf(elementData, newCapacity);//扩展空间并复制</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
 <h3 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h3>
       
     </div>
@@ -606,7 +618,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Collections介绍"><span class="nav-number">1.</span> <span class="nav-text">Collections介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现"><span class="nav-number">1.2.</span> <span class="nav-text">实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#List接口"><span class="nav-number">2.</span> <span class="nav-text">List接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ArrayList"><span class="nav-number">2.1.</span> <span class="nav-text">ArrayList</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LinkedList"><span class="nav-number">2.2.</span> <span class="nav-text">LinkedList</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Collections介绍"><span class="nav-number">1.</span> <span class="nav-text">Collections介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现类"><span class="nav-number">1.2.</span> <span class="nav-text">实现类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#List接口"><span class="nav-number">2.</span> <span class="nav-text">List接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ArrayList"><span class="nav-number">2.1.</span> <span class="nav-text">ArrayList</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#底层实现"><span class="nav-number">2.1.1.</span> <span class="nav-text">底层实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LinkedList"><span class="nav-number">2.2.</span> <span class="nav-text">LinkedList</span></a></li></ol></li></ol></div>
             
 
           </div>
