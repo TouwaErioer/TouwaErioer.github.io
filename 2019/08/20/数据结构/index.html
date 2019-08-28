@@ -79,18 +79,17 @@
 
 
 
-<meta name="description" content="动态数组  特点由于底层由数组data[]实现，所以是一种静态线性结构  时间复杂度增加：addFrist、addLast、add均为O(n)，每次add操作都会执行for操作把元素往后移动，addLast本为O(1)但有几率执行扩容操作，所以均摊复杂度为O(n) 删除：removeFirst、removeLast(均摊)、remove均为O(n) 修改：set(int index)为O(1)，知">
 <meta name="keywords" content="数据结构">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据结构">
 <meta property="og:url" content="http://yoursite.com/2019/08/20/数据结构/index.html">
 <meta property="og:site_name" content="HongYu&#39;s Blog">
-<meta property="og:description" content="动态数组  特点由于底层由数组data[]实现，所以是一种静态线性结构  时间复杂度增加：addFrist、addLast、add均为O(n)，每次add操作都会执行for操作把元素往后移动，addLast本为O(1)但有几率执行扩容操作，所以均摊复杂度为O(n) 删除：removeFirst、removeLast(均摊)、remove均为O(n) 修改：set(int index)为O(1)，知">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-28T09:49:53.832Z">
+<meta property="og:image" content="http://yoursite.com/2019/08/20/数据结构/%5Cpublic%5Cimages%5C71526754_p0.png">
+<meta property="og:updated_time" content="2019-08-28T09:58:38.370Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构">
-<meta name="twitter:description" content="动态数组  特点由于底层由数组data[]实现，所以是一种静态线性结构  时间复杂度增加：addFrist、addLast、add均为O(n)，每次add操作都会执行for操作把元素往后移动，addLast本为O(1)但有几率执行扩容操作，所以均摊复杂度为O(n) 删除：removeFirst、removeLast(均摊)、remove均为O(n) 修改：set(int index)为O(1)，知">
+<meta name="twitter:image" content="http://yoursite.com/2019/08/20/数据结构/%5Cpublic%5Cimages%5C71526754_p0.png">
 
 
 
@@ -352,14 +351,17 @@
       
 
       
-        <h2 id="动态数组"><a href="#动态数组" class="headerlink" title="动态数组"></a>动态数组</h2><hr>
+        <p><img src="%5Cpublic%5Cimages%5C71526754_p0.png" alt></p>
+<a id="more"></a>
+
+<h2 id="动态数组"><a href="#动态数组" class="headerlink" title="动态数组"></a>动态数组</h2><hr>
 <ul>
-<li><h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><p>由于底层由数组<code>data[]</code>实现，所以是一种静态线性结构</p>
+<li><h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><p>由于底层由数组<code>data[]</code>实现，所以是一种静态线性结构，之所以叫动态数组是可以根据情况执行扩容操作</p>
 </li>
 <li><h3 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h3><p>增加：addFrist、addLast、add均为<strong>O(n)</strong>，每次add操作都会执行for操作把元素往后移动，addLast本为<strong>O(1)</strong>但有几率执行扩容操作，所以均摊复杂度为<strong>O(n)</strong></p>
 <p>删除：removeFirst、removeLast(均摊)、remove均为<strong>O(n)</strong></p>
 <p>修改：set(int index)为<strong>O(1)</strong>，知道索引无需执行for操作</p>
-<p>查询：get()为<strong>O(1)</strong>，contains()为<strong>O(n)</strong>，int find(E e)为<strong>O(n)</strong></p>
+<p>查询：get()为<strong>O(1)</strong>，contains()为<strong>O(n)</strong>，int find(E e)为<strong>O(n)</strong>，知道索引为O(1)，不知道索引为<strong>O(n)</strong></p>
 </li>
 <li><h3 id="代码实现（Java）"><a href="#代码实现（Java）" class="headerlink" title="代码实现（Java）"></a>代码实现（Java）</h3></li>
 <li><h3 id="思路分析"><a href="#思路分析" class="headerlink" title="思路分析"></a>思路分析</h3></li>
