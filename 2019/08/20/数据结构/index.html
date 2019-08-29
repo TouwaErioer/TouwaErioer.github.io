@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="HongYu&#39;s Blog">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://i.loli.net/2019/08/28/1q6bOzw4ykfBtWi.png">
-<meta property="og:updated_time" content="2019-08-29T08:26:57.199Z">
+<meta property="og:updated_time" content="2019-08-29T08:28:01.084Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构">
 <meta name="twitter:image" content="https://i.loli.net/2019/08/28/1q6bOzw4ykfBtWi.png">
@@ -378,8 +378,6 @@
 <pre><code>3. remove(int index)操作：主要思路是把待删除元素后面的元素依次向前移动一位将其覆盖掉（注意：从待删除元素的后面的元素data[index]开始依次的向前移动一位，不然其他元素会被覆盖掉），再维护size的指向(size--)，因为size移动到原来最后一个元素的位置，data(size)不等于null，所以要手动把data[size]设为null，Java会自动回收
 
   <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 将待删除元素的后面元素每个向前移动一位，从data[index+1]开始</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = index + <span class="number">1</span>; i &lt; size; i++)</span><br><span class="line">	data[i-<span class="number">1</span>] = data[i];</span><br><span class="line">          </span><br><span class="line"><span class="comment">// 维护size</span></span><br><span class="line">size --;</span><br><span class="line">          </span><br><span class="line"><span class="comment">// 手动把data[size]设为null，Java会自动垃圾回收</span></span><br><span class="line">data[size] = <span class="keyword">null</span>;</span><br></pre></td></tr></table></figure>
-
-
 
 
 4. resize(int newCapacity)扩容操作：主要思路是创建一个新数组newArray[]，再把老数组data[]遍历到新数组中去
