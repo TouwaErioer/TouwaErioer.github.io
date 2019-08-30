@@ -89,7 +89,9 @@
 <meta property="og:image" content="https://i.loli.net/2019/08/30/OL4Dj27WJu3lzHV.png">
 <meta property="og:image" content="https://i.loli.net/2019/08/30/54w3SlIXVAHe1Qh.gif">
 <meta property="og:image" content="https://i.loli.net/2019/08/30/DmW8ZbBkoTSfzyX.gif">
-<meta property="og:updated_time" content="2019-08-30T06:11:33.030Z">
+<meta property="og:image" content="https://i.loli.net/2019/08/30/3VFflJNAmPodxXC.gif">
+<meta property="og:image" content="https://i.loli.net/2019/08/30/iYCtWq71K5PnFbR.png">
+<meta property="og:updated_time" content="2019-08-30T10:57:44.276Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构">
 <meta name="twitter:image" content="https://i.loli.net/2019/08/28/1q6bOzw4ykfBtWi.png">
@@ -390,10 +392,8 @@
 </ol>
 <h2 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h2><hr>
 <ul>
-<li><h3 id="特点-1"><a href="#特点-1" class="headerlink" title="特点"></a>特点</h3></li>
-</ul>
-<p>栈是一种<strong>后进先出LIFO(last in, first out)</strong>的基础数据结构，可以有不同的实现，可定义Stack接口，定义pull（压入），pop（压出），peek（查看栈顶元素）这几个栈的通用方法<br>  本文通过自定义Stack接口实现ArrayStack和LinkedListStack<br>  ArrayStack底层由动态数组实现<br>  LinkedListStack底层由链表实现</p>
-<ul>
+<li><h3 id="特点-1"><a href="#特点-1" class="headerlink" title="特点"></a>特点</h3><p>只允许在有序的线性数据集合的一端（称为堆栈顶端，英语：top）进行加入数据（英语：push）和移除数据（英语：pop）的运算。因而按照<strong>后进先出（LIFO, Last In First Out）</strong>的原理运作。<br>堆栈常用一维<a href="https://zh.wikipedia.org/wiki/陣列" target="_blank" rel="noopener">数组</a>或<a href="https://zh.wikipedia.org/wiki/連結串列" target="_blank" rel="noopener">链表</a>来实现，本文通过自定义Stack接口实现ArrayStack和LinkedListStack</p>
+</li>
 <li><h3 id="时间复杂度分析-1"><a href="#时间复杂度分析-1" class="headerlink" title="时间复杂度分析"></a>时间复杂度分析</h3><ul>
 <li><p>ArrayStack</p>
 <p>pull(E e)：<strong>O(1)</strong>，均摊<strong>O(n)</strong></p>
@@ -421,7 +421,51 @@
 
 </li>
 </ul>
-<h2 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h2><h2 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h2><h2 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h2>
+<h2 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h2><ul>
+<li><h3 id="特点-2"><a href="#特点-2" class="headerlink" title="特点"></a>特点</h3><p>是<a href="https://zh.wikipedia.org/wiki/先進先出" target="_blank" rel="noopener">先进先出</a>（FIFO, First-In-First-Out）的<a href="https://zh.wikipedia.org/wiki/线性表" target="_blank" rel="noopener">线性表</a>。在具体应用中通常用<a href="https://zh.wikipedia.org/wiki/链表" target="_blank" rel="noopener">链表</a>或者<a href="https://zh.wikipedia.org/wiki/数组" target="_blank" rel="noopener">数组</a>来实现。队列只允许在后端（称为<em>tail</em>）进行插入操作，在前端（称为<em>front</em>）进行删除操作。</p>
+<p>队列的操作方式和<a href="https://zh.wikipedia.org/wiki/堆栈" target="_blank" rel="noopener">堆栈</a>类似，唯一的区别在于队列只允许新数据在后端进行添加。</p>
+</li>
+<li><h3 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h3><ul>
+<li><p>ArrayQueue</p>
+<p>enQueue(E e)：O(1)，均摊O(n)–&gt;Array(addLast)</p>
+<p>deQueue()：O(n)，–&gt;Array(removeFirst)</p>
+<p>getFront()：O(1)，–&gt;Array(getFirst)</p>
+</li>
+<li><p>LoopQueue</p>
+<p>enQueue(E e)：O(1)</p>
+<p>deQueue()：O(1)</p>
+<p>getFront()：O(1)</p>
+</li>
+</ul>
+</li>
+<li><h3 id="代码实现（Java）-2"><a href="#代码实现（Java）-2" class="headerlink" title="代码实现（Java）"></a>代码实现（Java）</h3></li>
+<li><h3 id="思路分析（LoopQueue）"><a href="#思路分析（LoopQueue）" class="headerlink" title="思路分析（LoopQueue）"></a>思路分析（LoopQueue）</h3></li>
+</ul>
+<ol>
+<li><p>front的设置：front的作用是标识队首元素，让出队操作变为O(1)，每一次执行出队操作front指针向后移动一位，和ArrayQueue不同的是，每一次出队，出队元素后面的元素不会依次的向前移动一位，而是将出队元素的位置留空等于null</p>
+</li>
+<li><p>tail的设置：tail的作用是标识下一个将要添加的元素的位置，让入队操作变为O(1)，每一次执行入队操作tail指针向后移动一位，当对队列为空的时候，front和tail都指向0</p>
+</li>
+<li><p>循环队列指针指向：每次出队或入队都会执行front+1或tail+1来维护指针的指向，但在循环队列里会有front前面有空位的情况，所以要遵循公式：<code>(front+1)%data.length</code></p>
+<pre><code>对于公式`(tail+1)%data.length`的代入参数验证：
+
+front=0,tail=9,data.length=10-&gt;(9+1)%10=0
+
+front=1,tail=0,data.length=10-&gt;(0+1)%10=1
+
+front=2,tail=1,data.length=10-&gt;(1+1)%10=2</code></pre></li>
+<li><p>队列为满的条件：由以上公式得知<code>(tail+1)%data.length == front</code>的时候队列满了</p>
+</li>
+</ol>
+<p><img src="https://i.loli.net/2019/08/30/3VFflJNAmPodxXC.gif" alt="561nb-rps5u.gif"></p>
+<ul>
+<li><h3 id="不同实现对比"><a href="#不同实现对比" class="headerlink" title="不同实现对比"></a>不同实现对比</h3><p>对ArrayQueue和LoopQueue分别执行100000次入队、出队操作，比较两个Queue所耗费的时间</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">testQueue</span><span class="params">(Queue&lt;Integer&gt; queue,<span class="keyword">int</span> opCount)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">long</span> startTime = System.nanoTime();</span><br><span class="line"></span><br><span class="line">        Random random = <span class="keyword">new</span> Random();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;opCount; i++)</span><br><span class="line">            queue.enqueue(random.nextInt(Integer.MAX_VALUE));</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;opCount; i++)</span><br><span class="line">            queue.dequeue();</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">long</span> endTime = System.nanoTime();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> (endTime - startTime) / <span class="number">1000000000.0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> opCount = <span class="number">100000</span>;</span><br><span class="line">        System.out.println(<span class="string">"ArrayQueue: "</span>+testQueue(<span class="keyword">new</span> ArrayQueue&lt;&gt;(),opCount)+<span class="string">" s"</span>);</span><br><span class="line">        System.out.println(<span class="string">"LoopQueue: "</span>+testQueue(<span class="keyword">new</span> LoopQueue&lt;&gt;(),opCount)+<span class="string">" s"</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2019/08/30/iYCtWq71K5PnFbR.png" alt="Snipaste_2019-08-30_18-55-42.png"></p>
+</li>
+</ul>
+<h2 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h2><h2 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h2>
       
     </div>
     
@@ -597,7 +641,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#动态数组"><span class="nav-number">1.</span> <span class="nav-text">动态数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#特点"><span class="nav-number">1.1.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#时间复杂度分析"><span class="nav-number">1.2.</span> <span class="nav-text">时间复杂度分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现（Java）"><span class="nav-number">1.3.</span> <span class="nav-text">代码实现（Java）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路分析"><span class="nav-number">1.4.</span> <span class="nav-text">思路分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#栈"><span class="nav-number">2.</span> <span class="nav-text">栈</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#特点-1"><span class="nav-number">2.1.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#时间复杂度分析-1"><span class="nav-number">2.2.</span> <span class="nav-text">时间复杂度分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现（Java）-1"><span class="nav-number">2.3.</span> <span class="nav-text">代码实现（Java）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路分析-1"><span class="nav-number">2.4.</span> <span class="nav-text">思路分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LeetCode"><span class="nav-number">2.5.</span> <span class="nav-text">LeetCode</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#队列"><span class="nav-number">3.</span> <span class="nav-text">队列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#链表"><span class="nav-number">4.</span> <span class="nav-text">链表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#递归"><span class="nav-number">5.</span> <span class="nav-text">递归</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#动态数组"><span class="nav-number">1.</span> <span class="nav-text">动态数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#特点"><span class="nav-number">1.1.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#时间复杂度分析"><span class="nav-number">1.2.</span> <span class="nav-text">时间复杂度分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现（Java）"><span class="nav-number">1.3.</span> <span class="nav-text">代码实现（Java）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路分析"><span class="nav-number">1.4.</span> <span class="nav-text">思路分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#栈"><span class="nav-number">2.</span> <span class="nav-text">栈</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#特点-1"><span class="nav-number">2.1.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#时间复杂度分析-1"><span class="nav-number">2.2.</span> <span class="nav-text">时间复杂度分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现（Java）-1"><span class="nav-number">2.3.</span> <span class="nav-text">代码实现（Java）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路分析-1"><span class="nav-number">2.4.</span> <span class="nav-text">思路分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LeetCode"><span class="nav-number">2.5.</span> <span class="nav-text">LeetCode</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#队列"><span class="nav-number">3.</span> <span class="nav-text">队列</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#特点-2"><span class="nav-number">3.1.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#时间复杂度"><span class="nav-number">3.2.</span> <span class="nav-text">时间复杂度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现（Java）-2"><span class="nav-number">3.3.</span> <span class="nav-text">代码实现（Java）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路分析（LoopQueue）"><span class="nav-number">3.4.</span> <span class="nav-text">思路分析（LoopQueue）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不同实现对比"><span class="nav-number">3.5.</span> <span class="nav-text">不同实现对比</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#链表"><span class="nav-number">4.</span> <span class="nav-text">链表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#递归"><span class="nav-number">5.</span> <span class="nav-text">递归</span></a></li></ol></div>
             
 
           </div>
