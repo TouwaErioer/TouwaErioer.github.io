@@ -87,7 +87,9 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://i.loli.net/2019/08/28/1q6bOzw4ykfBtWi.png">
 <meta property="og:image" content="https://i.loli.net/2019/08/30/OL4Dj27WJu3lzHV.png">
-<meta property="og:updated_time" content="2019-08-29T16:28:51.849Z">
+<meta property="og:image" content="https://i.loli.net/2019/08/30/54w3SlIXVAHe1Qh.gif">
+<meta property="og:image" content="https://i.loli.net/2019/08/30/DmW8ZbBkoTSfzyX.gif">
+<meta property="og:updated_time" content="2019-08-30T06:06:49.585Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构">
 <meta name="twitter:image" content="https://i.loli.net/2019/08/28/1q6bOzw4ykfBtWi.png">
@@ -371,11 +373,15 @@
 <ol>
 <li><p>整形变量size的设置：size的作用是表示当前已装元素的数量，指向最后一个元素下一个位置，内容为null，这样设计可以巧妙的得出已装元素的数量（最后一个元素的索引+1），也同时让addLast()和removeLast()的时间复杂度为O(1)</p>
 </li>
-<li><p>add(intindex,E e)操作：主要思路是把需插入元素data[index]的后面所有元素都向后移动一位（注意：一定要先从最后一个元素开始移动，不然其他元素会被覆盖掉），再把需插入元素e赋值给data(index)替换掉原来的元素，最后维护size的指向(size++)</p>
+<li><p>add(intindex,E e)操作：主要思路是把需插入元素data[index]的后面所有元素都向后移动一位（注意：一定要先从最后一个元素开始移动，不然其他元素会被覆盖掉），再把需插入元素e赋值给data[index]替换掉原来的元素，最后维护size的指向(size++)</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 把元素向后移动一位</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = size - <span class="number">1</span>; i &gt;= index; i--)</span><br><span class="line">	data[i+<span class="number">1</span>] = data[i];</span><br><span class="line">                          	</span><br><span class="line"><span class="comment">// 覆盖原来的元素</span></span><br><span class="line">data[index] = e;</span><br><span class="line">                          	</span><br><span class="line"><span class="comment">// 维护size</span></span><br><span class="line">size ++;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2019/08/30/54w3SlIXVAHe1Qh.gif" alt="m8q99-3gcko.gif"></p>
 </li>
-<li><p>remove(int index)操作：主要思路是把待删除元素后面的元素依次向前移动一位将其覆盖掉（注意：从待删除元素的后面的元素data[index]开始依次的向前移动一位，不然其他元素会被覆盖掉），再维护size的指向(size–)，因为size移动到原来最后一个元素的位置，data(size)不等于null，所以要手动把data[size]设为null，Java会自动回收</p>
+<li><p>remove(int index)操作：主要思路是把待删除元素后面的元素依次向前移动一位将其覆盖掉（注意：从待删除元素的后面的元素data[index+1]开始依次的向前移动一位，不然其他元素会被覆盖掉），再维护size的指向(size–)，因为size移动到原来最后一个元素的位置，data[size]不等于null，所以要手动把data[size]设为null，Java会自动回收</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 将待删除元素的后面元素每个向前移动一位，从data[index+1]开始</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = index + <span class="number">1</span>; i &lt; size; i++)</span><br><span class="line">	data[i-<span class="number">1</span>] = data[i]</span><br><span class="line">       	</span><br><span class="line"><span class="comment">// 维护size</span></span><br><span class="line">size --;</span><br><span class="line">               </span><br><span class="line"><span class="comment">// 手动把data[size]设为null，Java会自动垃圾回收</span></span><br><span class="line">data[size] = <span class="keyword">null</span>;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2019/08/30/DmW8ZbBkoTSfzyX.gif" alt="dlrxm-4kkz3.gif"></p>
 </li>
 <li><p>resize(int newCapacity)扩容操作：主要思路是创建一个新数组newArray[]，再把老数组data[]遍历到新数组中去</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">resize</span><span class="params">(<span class="keyword">int</span> newCapacity)</span></span>&#123;</span><br><span class="line">       	E[] newArray = (E[]) <span class="keyword">new</span> Object[newCapacity];</span><br><span class="line">       	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;size;i++)</span><br><span class="line">       		newArray[i] = data[i];</span><br><span class="line">       	data = newArray;</span><br><span class="line">       	&#125;</span><br></pre></td></tr></table></figure>
@@ -384,13 +390,36 @@
 </ol>
 <h2 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h2><hr>
 <ul>
-<li><h3 id="特点-1"><a href="#特点-1" class="headerlink" title="特点"></a>特点</h3><p><strong>先进后出</strong>，本文ArrayStack底层由动态数组实现</p>
+<li><h3 id="特点-1"><a href="#特点-1" class="headerlink" title="特点"></a>特点</h3></li>
+</ul>
+<p>栈是一种<strong>后进先出LIFO(last in, first out)</strong>的基础数据结构，可以有不同的实现，可定义Stack接口，定义pull（压入），pop（压出），peek（查看栈顶元素）这几个栈的通用方法<br>  本文通过自定义Stack接口实现ArrayStack和LinkedListStack<br>  ArrayStack底层由动态数组实现<br>  LinkedListStack底层由链表实现</p>
+<ul>
+<li><h3 id="时间复杂度分析-1"><a href="#时间复杂度分析-1" class="headerlink" title="时间复杂度分析"></a>时间复杂度分析</h3><ul>
+<li><p>ArrayStack</p>
+<p>pull(E e)：<strong>O(1)</strong>，均摊<strong>O(n)</strong></p>
+<p>pop()：<strong>O(1)</strong>，均摊<strong>O(n)</strong></p>
+<p>peek()：<strong>O(1)</strong></p>
 </li>
-<li><h3 id="时间复杂度分析-1"><a href="#时间复杂度分析-1" class="headerlink" title="时间复杂度分析"></a>时间复杂度分析</h3></li>
-<li><h3 id="代码实现（Java）-1"><a href="#代码实现（Java）-1" class="headerlink" title="代码实现（Java）"></a>代码实现（Java）</h3></li>
-<li><h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3></li>
-<li><h3 id="不同实现与比较"><a href="#不同实现与比较" class="headerlink" title="不同实现与比较"></a>不同实现与比较</h3></li>
-<li><h3 id="LeetCode"><a href="#LeetCode" class="headerlink" title="LeetCode"></a>LeetCode</h3></li>
+<li><p>LinkedListStack</p>
+<p>pull(E e)：<strong>O(1)</strong></p>
+<p>pop()：<strong>O(1)</strong></p>
+<p>peek()：<strong>O(1)</strong></p>
+</li>
+</ul>
+</li>
+<li><h3 id="代码实现（Java）-1"><a href="#代码实现（Java）-1" class="headerlink" title="代码实现（Java）"></a>代码实现（Java）</h3><p>Stack接口：<a href="https://github.com/TouwaErioer/DataStructure/blob/master/src/Stack.java" target="_blank" rel="noopener">Github</a></p>
+<p>ArrayStack：<a href="https://github.com/TouwaErioer/DataStructure/blob/master/src/ArrayStack.java" target="_blank" rel="noopener">Github</a></p>
+<p>LinkedStack：<a href="https://github.com/TouwaErioer/DataStructure/blob/master/src/LinkedListStack.java" target="_blank" rel="noopener">Github</a></p>
+</li>
+<li><h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>由于<strong>后进先出LIFO(last in, first out)</strong>这种特性，对栈的操作都是对首（First）或尾（Last）进行操作，为了更好的性能，底层实现应选择O(1)对应的操作，比如：<br>底层是ArrayStack实现，对于pull、pop、peek的实现应选择O(1)级别的addLast、removeLast、getLast；<br>如果底层是LinkedStack实现，对于pull、pop的实现应选择O(1)级别的addFirst、removeFirst、getFirst；</p>
+</li>
+<li><h3 id="LeetCode"><a href="#LeetCode" class="headerlink" title="LeetCode"></a>LeetCode</h3><p>LeetCode第20题：<a href="https://leetcode-cn.com/problems/valid-parentheses/" target="_blank" rel="noopener">有效的括号</a></p>
+<p>遍历字符串所有字符，匹配到“(，[，{”就push到Stack中，匹配到“)，]，}”就pop对比</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isValid</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        Stack&lt;Character&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;s.length();i++)&#123;</span><br><span class="line">            <span class="keyword">char</span> c = s.charAt(i);</span><br><span class="line">            <span class="keyword">if</span>(c == <span class="string">'('</span> || c == <span class="string">'['</span> || c == <span class="string">'&#123;'</span>)&#123;</span><br><span class="line">                stack.push(c);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">if</span>(stack.isEmpty())&#123;</span><br><span class="line">                    <span class="keyword">return</span>  <span class="keyword">false</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">char</span> topChar = stack.pop();</span><br><span class="line">                <span class="keyword">if</span>(topChar == <span class="string">'('</span> &amp;&amp; c != <span class="string">')'</span>)</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">                <span class="keyword">if</span>(topChar == <span class="string">'['</span> &amp;&amp; c != <span class="string">']'</span>)</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">                <span class="keyword">if</span>(topChar == <span class="string">'&#123;'</span> &amp;&amp; c != <span class="string">'&#125;'</span>)</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> stack.isEmpty();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
 </ul>
 <h2 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h2><h2 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h2><h2 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h2>
       
@@ -568,7 +597,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#动态数组"><span class="nav-number">1.</span> <span class="nav-text">动态数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#特点"><span class="nav-number">1.1.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#时间复杂度分析"><span class="nav-number">1.2.</span> <span class="nav-text">时间复杂度分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现（Java）"><span class="nav-number">1.3.</span> <span class="nav-text">代码实现（Java）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路分析"><span class="nav-number">1.4.</span> <span class="nav-text">思路分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#栈"><span class="nav-number">2.</span> <span class="nav-text">栈</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#特点-1"><span class="nav-number">2.1.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#时间复杂度分析-1"><span class="nav-number">2.2.</span> <span class="nav-text">时间复杂度分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现（Java）-1"><span class="nav-number">2.3.</span> <span class="nav-text">代码实现（Java）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路"><span class="nav-number">2.4.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不同实现与比较"><span class="nav-number">2.5.</span> <span class="nav-text">不同实现与比较</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LeetCode"><span class="nav-number">2.6.</span> <span class="nav-text">LeetCode</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#队列"><span class="nav-number">3.</span> <span class="nav-text">队列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#链表"><span class="nav-number">4.</span> <span class="nav-text">链表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#递归"><span class="nav-number">5.</span> <span class="nav-text">递归</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#动态数组"><span class="nav-number">1.</span> <span class="nav-text">动态数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#特点"><span class="nav-number">1.1.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#时间复杂度分析"><span class="nav-number">1.2.</span> <span class="nav-text">时间复杂度分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现（Java）"><span class="nav-number">1.3.</span> <span class="nav-text">代码实现（Java）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路分析"><span class="nav-number">1.4.</span> <span class="nav-text">思路分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#栈"><span class="nav-number">2.</span> <span class="nav-text">栈</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#特点-1"><span class="nav-number">2.1.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#时间复杂度分析-1"><span class="nav-number">2.2.</span> <span class="nav-text">时间复杂度分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现（Java）-1"><span class="nav-number">2.3.</span> <span class="nav-text">代码实现（Java）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路"><span class="nav-number">2.4.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LeetCode"><span class="nav-number">2.5.</span> <span class="nav-text">LeetCode</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#队列"><span class="nav-number">3.</span> <span class="nav-text">队列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#链表"><span class="nav-number">4.</span> <span class="nav-text">链表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#递归"><span class="nav-number">5.</span> <span class="nav-text">递归</span></a></li></ol></div>
             
 
           </div>
