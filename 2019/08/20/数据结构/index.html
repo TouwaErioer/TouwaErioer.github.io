@@ -365,8 +365,7 @@
       
 
       
-        <p><img src="https://i.loli.net/2019/08/28/1q6bOzw4ykfBtWi.png" alt="71526754_p0.png"></p>
-<a id="more"></a>
+        <p><img src="https://i.loli.net/2019/08/28/1q6bOzw4ykfBtWi.png" alt="71526754_p0.png"><br><a id="more"></a></p>
 <h2 id="动态数组"><a href="#动态数组" class="headerlink" title="动态数组"></a>动态数组</h2><hr>
 <ul>
 <li><h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><p>由于底层由数组<code>data[]</code>实现，所以是一种静态线性结构，之所以叫动态数组是可以根据情况执行扩容操作</p>
@@ -382,21 +381,17 @@
 <li><h3 id="思路分析"><a href="#思路分析" class="headerlink" title="思路分析"></a>思路分析</h3></li>
 </ul>
 <ol>
-<li><p>整形变量size的设置：size的作用是表示当前已装元素的数量，指向最后一个元素下一个位置，内容为null，这样设计可以巧妙的得出已装元素的数量（最后一个元素的索引+1），也同时让addLast()和removeLast()的时间复杂度为O(1)</p>
-</li>
+<li>整形变量size的设置：size的作用是表示当前已装元素的数量，指向最后一个元素下一个位置，内容为null，这样设计可以巧妙的得出已装元素的数量（最后一个元素的索引+1），也同时让addLast()和removeLast()的时间复杂度为O(1)</li>
 <li><p>add(intindex,E e)操作：主要思路是把需插入元素data[index]的后面所有元素都向后移动一位（注意：一定要先从最后一个元素开始移动，不然其他元素会被覆盖掉），再把需插入元素e赋值给data[index]替换掉原来的元素，最后维护size的指向(size++)</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 把元素向后移动一位</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = size - <span class="number">1</span>; i &gt;= index; i--)</span><br><span class="line">	data[i+<span class="number">1</span>] = data[i];</span><br><span class="line">                          	</span><br><span class="line"><span class="comment">// 覆盖原来的元素</span></span><br><span class="line">data[index] = e;</span><br><span class="line">                          	</span><br><span class="line"><span class="comment">// 维护size</span></span><br><span class="line">size ++;</span><br></pre></td></tr></table></figure>
-
 <p><img src="https://i.loli.net/2019/08/30/54w3SlIXVAHe1Qh.gif" alt="m8q99-3gcko.gif"></p>
 </li>
-<li><p>remove(int index)操作：主要思路是把待删除元素后面的元素依次向前移动一位将其覆盖掉（注意：从待删除元素的后面的元素data[index+1]开始依次的向前移动一位，不然其他元素会被覆盖掉），再维护size的指向(size–)，因为size移动到原来最后一个元素的位置，data[size]不等于null，所以要手动把data[size]设为null，Java会自动回收</p>
+<li><p>remove(int index)操作：主要思路是把待删除元素后面的元素依次向前移动一位将其覆盖掉（注意：从待删除元素的后面的元素data[index+1]开始依次的向前移动一位，不然其他元素会被覆盖掉），再维护size的指向(size—)，因为size移动到原来最后一个元素的位置，data[size]不等于null，所以要手动把data[size]设为null，Java会自动回收</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 将待删除元素的后面元素每个向前移动一位，从data[index+1]开始</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = index + <span class="number">1</span>; i &lt; size; i++)</span><br><span class="line">	data[i-<span class="number">1</span>] = data[i]</span><br><span class="line">       	</span><br><span class="line"><span class="comment">// 维护size</span></span><br><span class="line">size --;</span><br><span class="line">               </span><br><span class="line"><span class="comment">// 手动把data[size]设为null，Java会自动垃圾回收</span></span><br><span class="line">data[size] = <span class="keyword">null</span>;</span><br></pre></td></tr></table></figure>
-
 <p><img src="https://i.loli.net/2019/08/30/DmW8ZbBkoTSfzyX.gif" alt="dlrxm-4kkz3.gif"></p>
 </li>
 <li><p>resize(int newCapacity)扩容操作：主要思路是创建一个新数组newArray[]，再把老数组data[]遍历到新数组中去</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">resize</span><span class="params">(<span class="keyword">int</span> newCapacity)</span></span>&#123;</span><br><span class="line">       	E[] newArray = (E[]) <span class="keyword">new</span> Object[newCapacity];</span><br><span class="line">       	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;size;i++)</span><br><span class="line">       		newArray[i] = data[i];</span><br><span class="line">       	data = newArray;</span><br><span class="line">       	&#125;</span><br></pre></td></tr></table></figure>
-
 </li>
 </ol>
 <h2 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h2><hr>
@@ -425,9 +420,6 @@
 <li><h3 id="LeetCode"><a href="#LeetCode" class="headerlink" title="LeetCode"></a>LeetCode</h3><p>LeetCode第20题：<a href="https://leetcode-cn.com/problems/valid-parentheses/" target="_blank" rel="noopener">有效的括号</a></p>
 <p>遍历字符串所有字符，匹配到“(，[，{”就push到Stack中，匹配到“)，]，}”就pop对比</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isValid</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        Stack&lt;Character&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;s.length();i++)&#123;</span><br><span class="line">            <span class="keyword">char</span> c = s.charAt(i);</span><br><span class="line">            <span class="keyword">if</span>(c == <span class="string">'('</span> || c == <span class="string">'['</span> || c == <span class="string">'&#123;'</span>)&#123;</span><br><span class="line">                stack.push(c);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">if</span>(stack.isEmpty())&#123;</span><br><span class="line">                    <span class="keyword">return</span>  <span class="keyword">false</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">char</span> topChar = stack.pop();</span><br><span class="line">                <span class="keyword">if</span>(topChar == <span class="string">'('</span> &amp;&amp; c != <span class="string">')'</span>)</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">                <span class="keyword">if</span>(topChar == <span class="string">'['</span> &amp;&amp; c != <span class="string">']'</span>)</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">                <span class="keyword">if</span>(topChar == <span class="string">'&#123;'</span> &amp;&amp; c != <span class="string">'&#125;'</span>)</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> stack.isEmpty();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-
-
 </li>
 </ul>
 <h2 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h2><ul>
@@ -436,9 +428,9 @@
 </li>
 <li><h3 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h3><ul>
 <li><p>ArrayQueue</p>
-<p>enQueue(E e)：O(1)，均摊O(n)–&gt;Array(addLast)</p>
-<p>deQueue()：O(n)，–&gt;Array(removeFirst)</p>
-<p>getFront()：O(1)，–&gt;Array(getFirst)</p>
+<p>enQueue(E e)：O(1)，均摊O(n)—&gt;Array(addLast)</p>
+<p>deQueue()：O(n)，—&gt;Array(removeFirst)</p>
+<p>getFront()：O(1)，—&gt;Array(getFirst)</p>
 </li>
 <li><p>LoopQueue</p>
 <p>enQueue(E e)：O(1)</p>
@@ -464,7 +456,8 @@ front=0,tail=9,data.length=10-&gt;(9+1)%10=0
 
 front=1,tail=0,data.length=10-&gt;(0+1)%10=1
 
-front=2,tail=1,data.length=10-&gt;(1+1)%10=2</code></pre></li>
+front=2,tail=1,data.length=10-&gt;(1+1)%10=2
+</code></pre></li>
 <li><p>队列为满的条件：由以上公式得知<code>(tail+1)%data.length == front</code>的时候队列满了</p>
 </li>
 </ol>
@@ -472,12 +465,11 @@ front=2,tail=1,data.length=10-&gt;(1+1)%10=2</code></pre></li>
 <ul>
 <li><h3 id="不同实现对比"><a href="#不同实现对比" class="headerlink" title="不同实现对比"></a>不同实现对比</h3><p>对ArrayQueue和LoopQueue分别执行100000次入队、出队操作，比较两个Queue所耗费的时间</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">testQueue</span><span class="params">(Queue&lt;Integer&gt; queue,<span class="keyword">int</span> opCount)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">long</span> startTime = System.nanoTime();</span><br><span class="line"></span><br><span class="line">        Random random = <span class="keyword">new</span> Random();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;opCount; i++)</span><br><span class="line">            queue.enqueue(random.nextInt(Integer.MAX_VALUE));</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;opCount; i++)</span><br><span class="line">            queue.dequeue();</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">long</span> endTime = System.nanoTime();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> (endTime - startTime) / <span class="number">1000000000.0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> opCount = <span class="number">100000</span>;</span><br><span class="line">        System.out.println(<span class="string">"ArrayQueue: "</span>+testQueue(<span class="keyword">new</span> ArrayQueue&lt;&gt;(),opCount)+<span class="string">" s"</span>);</span><br><span class="line">        System.out.println(<span class="string">"LoopQueue: "</span>+testQueue(<span class="keyword">new</span> LoopQueue&lt;&gt;(),opCount)+<span class="string">" s"</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
 <p><img src="https://i.loli.net/2019/08/30/iYCtWq71K5PnFbR.png" alt="Snipaste_2019-08-30_18-55-42.png"></p>
 </li>
 </ul>
 <h2 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h2><ul>
-<li><h3 id="特点-3"><a href="#特点-3" class="headerlink" title="特点"></a>特点</h3><p><strong>链表</strong>（Linked list）是一种常见的基础数据结构，是一种<a href="https://zh.wikipedia.org/wiki/线性表" target="_blank" rel="noopener">线性表</a>，但是并不会按线性的顺序存储数据，而是在每一个节点里存到下一个节点的<a href="https://zh.wikipedia.org/wiki/指標_(電腦科學)" target="_blank" rel="noopener">指针</a>(Pointer)。由于不必须按顺序存储，链表在插入的时候可以达到O(1)的<a href="https://zh.wikipedia.org/wiki/複雜度" target="_blank" rel="noopener">复杂度</a>，比另一种线性表<a href="https://zh.wikipedia.org/wiki/顺序表" target="_blank" rel="noopener">顺序表</a>快得多，但是查找一个节点或者访问特定编号的节点则需要O(n)的时间，而顺序表相应的时间复杂度分别是O(logn)和O(1)。</p>
+<li><h3 id="特点-3"><a href="#特点-3" class="headerlink" title="特点"></a>特点</h3><p><strong>链表</strong>（Linked list）是一种常见的基础数据结构，是一种<a href="https://zh.wikipedia.org/wiki/线性表" target="_blank" rel="noopener">线性表</a>，但是并不会按线性的顺序存储数据，而是在每一个节点里存到下一个节点的<a href="https://zh.wikipedia.org/wiki/指標_(電腦科學" target="_blank" rel="noopener">指针</a>)(Pointer)。由于不必须按顺序存储，链表在插入的时候可以达到O(1)的<a href="https://zh.wikipedia.org/wiki/複雜度" target="_blank" rel="noopener">复杂度</a>，比另一种线性表<a href="https://zh.wikipedia.org/wiki/顺序表" target="_blank" rel="noopener">顺序表</a>快得多，但是查找一个节点或者访问特定编号的节点则需要O(n)的时间，而顺序表相应的时间复杂度分别是O(logn)和O(1)。</p>
 <p>在计算机科学中，链表作为一种基础的数据结构可以用来生成其它类型的数据结构。链表通常由一连串节点组成，每个节点包含任意的实例数据（data fields）和一或两个用来指向上一个/或下一个节点的位置的链接（”links”）。链表最明显的好处就是，常规数组排列关联项目的方式可能不同于这些数据项目在记忆体或磁盘上顺序，数据的访问往往要在不同的排列顺序中转换。而链表是一种自我指示数据类型，因为它包含指向另一个相同类型的数据的指针（链接）。链表允许插入和移除表上任意位置上的节点，但是不允许随机存取。链表有很多种不同的类型：单向链表，双向链表以及循环链表。</p>
 <ol>
 <li><p>单向链表</p>
@@ -501,17 +493,14 @@ front=2,tail=1,data.length=10-&gt;(1+1)%10=2</code></pre></li>
 </li>
 <li><p>虚拟节点dummyHead的设置：dummyHead设置在链表的头节点前面一位的位置</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 初始化</span></span><br><span class="line">dummyHead = <span class="keyword">new</span> Node(<span class="keyword">null</span>,<span class="keyword">null</span>);</span><br></pre></td></tr></table></figure>
-
 <p><img src="https://i.loli.net/2019/09/01/mAqinZlwkFcp39G.png" alt="Snipaste_2019-09-01_22-19-43.png"></p>
 </li>
 <li><p>add(int index,E e)操作：把虚拟节点dummyHead赋值给新建节点prev，把他移动到需要插入的位置前一个的位置，把要插入节点的下一个节点设为prev的下一个节点，prev的下一个节点为要插入的节点，注释代码等于下一句代码，维护size</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> index,E e)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(index &lt; <span class="number">0</span> || index&gt;size)</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"Add failed,Illegal index"</span>);</span><br><span class="line">    </span><br><span class="line">        Node prev = dummyHead;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;index;i++)</span><br><span class="line">            prev = prev.next;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Node node = new Node(e);</span></span><br><span class="line">        <span class="comment">// node.next = prev.next;</span></span><br><span class="line">        <span class="comment">// prev.next = node;</span></span><br><span class="line"></span><br><span class="line">        prev.next = <span class="keyword">new</span> Node(e,prev.next);</span><br><span class="line">        size ++;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
 <p><img src="https://i.loli.net/2019/09/01/cTAfJ3vnx2zrSiW.gif" alt="xyi30-x17nl.gif"></p>
 </li>
 <li><p>remove(int index)操作：把虚拟节点赋值给新建节点cur，把他移动到需要插入的位置前一个的位置，找到要<strong>删除元素的前一个节点cur</strong>；因为要返回删除的元素，所以要提前保存<strong>要删除的节点ret</strong>=cur.next，把cur的next指向ret的下一位元素：cur.next=cur,next.next；把ret的next指向null，脱离链表，自动回收；维护size</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> E <span class="title">remove</span><span class="params">(<span class="keyword">int</span> index)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(index &lt; <span class="number">0</span> || index &gt;= size)</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"Remove failed,illegal index"</span>);</span><br><span class="line">        Node cur = dummyHead;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;index;i++)</span><br><span class="line">            cur = cur.next;</span><br><span class="line">        Node ret = cur.next;</span><br><span class="line">        cur.next = ret.next;</span><br><span class="line">        ret.next = <span class="keyword">null</span>;</span><br><span class="line">        size --;</span><br><span class="line">        <span class="keyword">return</span> (E) ret.e;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
 <p><img src="https://i.loli.net/2019/09/01/Y9eQwRHxOqukv1o.gif" alt="9c614-9idio.gif"></p>
 </li>
 <li><p>set(int index,E e)和get(int index,E e)操作大同小异，让cur从第一个节点开始，next到index的节点，执行修改或获取操作。</p>
@@ -525,7 +514,6 @@ front=2,tail=1,data.length=10-&gt;(1+1)%10=2</code></pre></li>
 <p>如果不相等的话，就继续next</p>
 <p>Java实现：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ListNode</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> val;</span><br><span class="line">        ListNode next;</span><br><span class="line">        ListNode(<span class="keyword">int</span> x) &#123; val = x; &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">removeElements</span><span class="params">(ListNode head, <span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        ListNode dummyNode = <span class="keyword">new</span> ListNode(<span class="number">0</span>);</span><br><span class="line">        dummyNode.next = head;</span><br><span class="line"></span><br><span class="line">        ListNode prev = dummyNode;</span><br><span class="line">        <span class="keyword">while</span>(prev.next != <span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(prev.next.val == val)&#123;</span><br><span class="line">                ListNode cur = prev.next;</span><br><span class="line">                prev.next = cur.next;</span><br><span class="line">                cur = <span class="keyword">null</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                prev = prev.next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dummyNode.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 </li>
 </ul>
 <h2 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h2><ul>
@@ -540,16 +528,12 @@ front=2,tail=1,data.length=10-&gt;(1+1)%10=2</code></pre></li>
 <li>计算int[]数组的的和：</li>
 </ol>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span>[] arr)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> sum(arr,<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span>[] arr,<span class="keyword">int</span> l)</span></span>&#123;</span><br><span class="line">  </span><br><span class="line"> 	<span class="comment">// 求解最基本问题</span></span><br><span class="line">    <span class="keyword">if</span>(l == arr.length) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  </span><br><span class="line">    <span class="comment">// 把原来的问题转换成更小的问题</span></span><br><span class="line">    <span class="keyword">int</span> x = sum(arr,l + <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">int</span> res = arr[l] + x</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
 </li>
 </ul>
 <p>  <img src="https://i.loli.net/2019/09/03/gFjCWa4fA2oeD3S.png" alt="Snipaste_2019-09-03_20-19-34.png"><br>  <img src="https://i.loli.net/2019/09/03/3DK1UEiFAaI8PXN.gif" alt="a0xl3-egvju.gif"></p>
-<ol start="2">
+<ol>
 <li><p>利用递归解决从链表删除所有value的问题：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">removeElements</span><span class="params">(ListNode head, <span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 求解最基本的问题</span></span><br><span class="line">        <span class="keyword">if</span>(head == <span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    </span><br><span class="line">        <span class="comment">// 把原来的问题转换成更小的问题</span></span><br><span class="line">        head.next = removeElements(head.next, val);</span><br><span class="line">        <span class="keyword">return</span> head.val == val ? head.next : head;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-
 </li>
 </ol>
 <p>  <img src="https://i.loli.net/2019/09/03/IOmciHwAnoMFRj7.png" alt="Snipaste_2019-09-03_21-53-51.png"></p>
@@ -674,7 +658,7 @@ front=2,tail=1,data.length=10-&gt;(1+1)%10=2</code></pre></li>
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -883,7 +867,24 @@ front=2,tail=1,data.length=10-&gt;(1+1)%10=2</code></pre></li>
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 
 
